@@ -1,6 +1,6 @@
 {
-    "name": "sagarfine/SsInpSydeSample",
-    "description": "A short description of what your package does",
+    "name": "sagarfine/ssinpsydesample",
+    "description": "This plugin demonstrates, sending HTTP requests to third party API, process the received data and display.",
     "require": {
         "php": "^7.2",
         "another-vendor/package": "1.*"
