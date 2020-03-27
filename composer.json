@@ -1,5 +1,11 @@
 {
-    "require-dev": {
+    "name": "sagarfine/SsInpSydeSample",
+    "description": "A short description of what your package does",
+    "require": {
+        "php": "^7.2",
+        "another-vendor/package": "1.*"
+    }
+	"require-dev": {
         "brain/monkey": "2.*",
         "phpunit/phpunit": "9"
     }
