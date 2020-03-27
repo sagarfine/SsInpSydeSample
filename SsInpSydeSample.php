@@ -5,7 +5,7 @@ Plugin URI: https://inpsyde.com/
 Description: This is the plugin which send request to API from custom endpoint
 and show the result.
 Version: 1.0
-Author: Sagar Shinde
+Author: Sagar Shinde.
 Author URI: https://www.linkedin.com/in/sagarfine/
 License: GPLv2 or later
 Text Domain: ssinspyde
