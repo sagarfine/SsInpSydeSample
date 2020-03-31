@@ -1,27 +1,16 @@
 === InpSyde sample ===
-
 Contributors: Sagar Shinde
-
 Tags: API, HTTP REQUEST
-
 Requires at least: 5.0
-
 Tested up to: 5.3.2
-
 Requires PHP: 7.0
-
 License: GPLv2 or later
-
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
-
 
 This plugin demonstrates, sending HTTP requests to third party API, process the received data and display.  
 
-
 == Description ==
-
 This is demonstration plugin, which sends HTTP request to third party API and received the JSON data. The plugin process this data and display in tabular format in custom page. It also sends an HTTP request through AJAX to display user details. 
-
 
 **The following are major features of the plugin ....**
 ### Admin Panel
@@ -46,6 +35,12 @@ If admin add valid slug then, you can find a link to open the custom page.
 * Download the plugin
 * Upload the folder “SsInpSydeSample” to wp-content/plugins (or upload a zip through the WordPress admin)
 Activate and enjoy! 
+
+### Method 2 : Composer Install
+* If you don't have composer then install it. 
+* Open Command Prompt/Terminal and go to the wp-content/plugins directory.
+* Run Command "composer require sagarfine/ssinpsydesample"
+* Activate Plugin and Enjoy. 
 
 == Frequently Asked Questions ==
 ### 1. Can we use any API URL/endpoint? 
