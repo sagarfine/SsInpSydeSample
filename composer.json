@@ -7,5 +7,14 @@
 	"require-dev": {
         "brain/monkey": "2.*",
         "phpunit/phpunit": "9"
-    }
+    },
+	"authors": [
+        {
+            "name": "Sagar Shinde",
+            "email": "sagarfine@gmail.com",
+            "homepage": "https://www.linkedin.com/in/sagarfine/",
+            "role": "Developer"
+        }
+	],
+	"license":"GPL-2.0-or-later"
 }
