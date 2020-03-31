@@ -17,6 +17,7 @@ License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 This plugin demonstrates, sending HTTP requests to third party API, process the received data and display.  
 
 == Description ==
+
 This is demonstration plugin, which sends HTTP request to third party API and received the JSON data. The plugin process this data and display in tabular format in custom page. It also sends an HTTP request through AJAX to display user details. 
 
 **The following are major features of the plugin ....**
