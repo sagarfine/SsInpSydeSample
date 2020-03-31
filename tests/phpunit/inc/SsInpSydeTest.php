@@ -1,6 +1,8 @@
 <?php
+declare(strict_types=1);
 namespace inc\SsInpSyde;
 
+use Mockery;
 use PHPUnit\Framework\TestCase;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Brain\Monkey;
@@ -25,6 +27,6 @@ class SsInpSydeTest extends TestCase
     {
         Monkey\tearDown();
         parent::tearDown();
-        \Mockery::close();
+        Mockery::close();
     }
 }

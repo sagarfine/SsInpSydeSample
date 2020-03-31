@@ -3,7 +3,7 @@
  * Class Name : SsClassInpSyde
  * Description : This class contains all the properties and methods which are required
  *  to fetch the data from external API and display on custom page.
- * Date : 21 March 2020
+ * Date : 24 March 2020
  * Author : Sagar Shinde
  */
 declare(strict_types=1);
@@ -13,7 +13,7 @@ use WP_Http;
 
 class SsClassInpSyde
 {
-    private string $ssApiEndPoint; // The API endpoint URL.
+    protected string $ssApiEndPoint; // The API endpoint URL.
     private string $ssCustomSlug; // The slug of custom endpoint
     private float $ssCacheExpiry; // Cache Expiry
 
@@ -63,15 +63,25 @@ class SsClassInpSyde
         add_action('plugins_loaded', [$this, 'fnLoadTextDomain']);
         //Action to add menu in Setting page.
         add_action('admin_menu', [$this, 'fnAddSettingsMenu']);
-        add_action('init', function () {
-            add_rewrite_rule('^'.$this->ssCustomSlug.'/?$', 'index.php?param='.$this->ssCustomSlug, 'top');
-            flush_rewrite_rules();
-        }, 10, 0);
+        add_action('init', [$this, 'ssFnRewriteRules'], 10, 0);
         add_filter('query_vars', [$this, 'fnSsRewriteFilterRequest']);
         add_action('template_redirect', [$this, 'fnTemplateRedirect']);
         add_action('admin_init', [$this, 'fnAdminInitActions']);
         add_action('wp_ajax_ssFnGetUserPosts', [$this, 'ssFnGetUserDetailsById']);
         add_action('wp_ajax_nopriv_ssFnGetUserPosts', [$this, 'ssFnGetUserDetailsById']);
+    }
+
+    /*
+     * Function name : ssFnRewriteRules
+     * Parameters : None
+     * Return Type : None
+     * Description : This action function add custom rewrite rule.
+     */
+
+    public function ssFnRewriteRules()
+    {
+        add_rewrite_rule('^'.$this->ssCustomSlug.'/?$', 'index.php?param='.$this->ssCustomSlug, 'top');
+        flush_rewrite_rules();
     }
 
      /*
@@ -91,18 +101,12 @@ class SsClassInpSyde
             require_once ABSPATH . WPINC . '/class-http.php';
         }
         $http = new WP_Http();
-        $ssRemoteData='';
-        try {
-            $ssRemoteData = $http->request($endpoint, ['reject_unsafe_urls'=>true, 'blocking'=>true]);
-            if (is_wp_error($ssRemoteData)) {
-                return '';
-            }
-            $ssRemoteData = wp_remote_retrieve_body($ssRemoteData);
-        } catch (\TypeError $error) {
-            return '';
-        } catch (\Error $error) {
+        $ssRemoteData = $http->request($endpoint, ['reject_unsafe_urls'=>true, 'blocking'=>true]);
+        if (is_wp_error($ssRemoteData)) {
             return '';
         }
+        $ssRemoteData = wp_remote_retrieve_body($ssRemoteData);
+
         return $ssRemoteData;
     }
 
@@ -175,9 +179,6 @@ class SsClassInpSyde
     {
         $ssUserId=isset($_POST['user_id'])?sanitize_text_field($_POST['user_id']):0; // input var okay
         if ($ssUserId!==0){
-            $ssApiEndPoint=$this->ssFnGetEndpoint();
-            $ssUserEndpoint=$ssApiEndPoint.'/'.$ssUserId.'/';
-            //$ssUserEndpoint=preg_replace('#/+#','/',$ssUserEndpoint);
             $ssArrUsersPostDetails=$this->ssFnSendRequest(
                 'ssArrUsersDetails-'.$ssUserId,
                 '/'.$ssUserId
@@ -203,7 +204,6 @@ class SsClassInpSyde
     protected function ssFnGetUserDetails(array $ssPostData):string
     {
         $ssModalHtml='';
-       // $ssPostData=$ssPostData[0];
         if (is_array($ssPostData) && count($ssPostData)>0) {
             $ssModalHtml.='<div class="row" >';
             $ssModalHtml.='<div class="col-md-4 col-sm-1"><h6>';
