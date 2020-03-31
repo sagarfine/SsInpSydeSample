@@ -42,7 +42,7 @@ If admin add valid slug then, you can find a link to open the custom page.
 ### Method 1 :
 * Download the plugin
 * Upload the folder “SsInpSydeSample” to wp-content/plugins (or upload a zip through the WordPress admin)
-Activate and enjoy! 
+Activate and enjoy!
 
 ### Method 2 : Composer Install
 * If you don't have composer then install it. 
