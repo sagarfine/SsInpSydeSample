@@ -72,6 +72,25 @@ class SsClassInpSyde
     }
 
     /*
+     * Function name : ssFnCheckVersions
+     * Parameters : $plugin : It provide plugin root file name.
+     * Return Type : None
+     * Description : This action function check if the plugin is meeting minimum requirement criteria.
+     */
+
+    public static function ssFnCheckVersions(string $plugin)
+    {
+        global $wp_version;
+        if (version_compare(PHP_VERSION, '7.0.0') < 0) {
+            wp_die(esc_html__('PHP version need to be at least 7.0 to activate this plugin', 'ssinpsyde'));
+        }
+
+        if ($wp_version < 5.0 && 'ssinpsydesample.php'===$plugin) {
+            wp_die(esc_html__('WordPress need to be at least 5.0 to activate this plugin', 'ssinpsyde'));
+        }
+    }
+
+    /*
      * Function name : ssFnRewriteRules
      * Parameters : None
      * Return Type : None
